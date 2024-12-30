@@ -31,7 +31,7 @@ else{
 }
 
 // For loops in JS
-let answer = 0
+let answer = 0;
 for (let i = 0; i<=100; i++){
     answer += i;
 }
@@ -54,8 +54,8 @@ const users = {
     firstName : "Arkadeep",
     age : 27,
     gender : "male"
-}
-console.log(users["firstName"])
+};
+console.log(users["firstName"]);
 
 // Array of Javascript Objects
 const users_data = [{
@@ -66,11 +66,11 @@ const users_data = [{
     firstName : "B",
     age : 28,
     gender : "female"
-}]
+}];
 for (let i = 0; i<users_data.length; i++){
     if (users_data[i]["gender"]=="male"){
-        console.log(users_data[i]["firstName"])
-        console.log(users_data[i].firstName)
+        console.log(users_data[i]["firstName"]);
+        console.log(users_data[i].firstName);
     }
 }
 
@@ -79,7 +79,7 @@ function sum(a, b) {
     // do things with input and return the output
     return a + b;
 }
-console.log(sum(100, 200))
+console.log(sum(100, 200));
 
 // Functions can take other functions as input: Callbacks - Function Calling back a different function
 function square(x) {
@@ -94,7 +94,7 @@ console.log(sqaureOfSum(2,3, square));
 
 // SetTimeout Callback
 function greet(){
-    console.log("Hello")
+    console.log("Hello");
 }
 // This accepts two arguments fn, time-> Runs fn after time secs
-setTimeout(greet, 3*1000)
+setTimeout(greet, 3*1000);
