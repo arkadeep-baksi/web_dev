@@ -46,6 +46,7 @@ setTimeout(function (){
 function promisifiedSetTimeout(duration){
 
     const p = new Promise(function(resolve) {
+        // Async Logic
         setTimeout(function (){
             resolve();
         }, duration);
@@ -65,6 +66,7 @@ timer.then(function (){
 function promisifiedReadFile(file){
 
     const reader = new Promise(function(resolve){
+        // Async Logic
         fs.readFile(file, "utf-8", function(err, data){
             resolve(data);
         });
@@ -74,4 +76,42 @@ function promisifiedReadFile(file){
 fileReader = promisifiedReadFile("file.txt");
 fileReader.then(function (data){
     console.log("Data of File:" + data);
-})
+}).catch(function (err){
+    console.log("Error is:" + err);
+});
+
+function myPromisifiedTimeout(duration){
+    const timer = new Promise(function(resolve){
+        setTimeout(resolve, duration);
+    });
+    return timer;
+}
+const p = myPromisifiedTimeout(1000);
+p.then(function(){
+    console.log("Inside new timeout");
+});
+
+//Understanding the flow of control
+console.log("-------------------------------");
+console.log("At the top: 1");
+
+function promisifiedTimeout(duration){
+    console.log("Inside promisified Timeout: 3")
+    const timer = new Promise(function(resolve){
+        console.log("Inside Promise: 4");
+        // Async Function
+        setTimeout(function(){
+            console.log("Inside SetTimeout: 6");
+            resolve("Inside resolve");
+        }, duration);
+    });
+
+    return timer;
+}
+
+console.log("In the middle: 2");
+const caller = promisifiedTimeout(500);
+console.log("Going to call then: 5");
+caller.then(function(value){
+    console.log(value + ": 7");
+});
