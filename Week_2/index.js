@@ -5,6 +5,8 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
+// Express Hello World
+
 app.get('/', function(req, res){
     res.send('Hello World');
 });
@@ -17,6 +19,5 @@ app.post('/conversation', function(req, res){
 });
 
 app.listen(port, function(){
-    console.log('Example app listening on port '+ port);
+    console.log("Started server at port:" + port);
 });
-
