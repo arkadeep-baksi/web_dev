@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+    
+    let globalId = 1;
+
+    function markAsDone(Id){
+
+        const parent = document.getElementById(Id);
+        parent.children[2].innerHTML = "Done !!";
+
+    }
+    //Function to create ToDo Items
+    function createChild(title, description, Id){
+
+        const child = document.createElement("div");
+        const firstGrandChild = document.createElement("div");
+        firstGrandChild.innerHTML=title;
+        const secondGrandChild = document.createElement("div");
+        secondGrandChild.innerHTML=description;
+        const thirdGrandChild = document.createElement("button");
+        thirdGrandChild.innerHTML = "Mark As Done"
+        thirdGrandChild.setAttribute("onclick", `markAsDone(${Id})`);
+        child.appendChild(firstGrandChild);
+        child.appendChild(secondGrandChild);
+        child.appendChild(thirdGrandChild);
+        child.setAttribute("id", Id);
+
+        return child;
+    }
+
+    function createToDo(){
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+
+        // Naive way of appending all the Todo's to the dom
+        // originalHTML = document.getElementById("container").innerHTML;
+        // document.getElementById("container").innerHTML = originalHTML + `<div>
+        //     <div>${title}</div>
+        //     <div>${description}</div>
+        //     <button> Mark As Done </button>
+        // </div>
+        // `
+
+        //Better way is using childs and other document functions
+        const parent = document.getElementById("container");
+        parent.appendChild(createChild(title, description, globalId++));
+
+    }
+</script>
+<body>
+   <input id = "title" type = "text" placeholder="Title"></input><br></br>
+   <input id = "description" type = "text" placeholder="Description"></input><br></br>
+   <button onclick="createToDo()">Add ToDo</button>
+   <div id="container"></div>
+</body>
