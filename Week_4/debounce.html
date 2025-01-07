@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    
+    //Global Timeout
+    let timeout;
+    
+    //Debounced logic
+    // The problem we are trying to solve is that suppose we want to send the request after 100 ms to the backend.
+    // But if the user starts giving input again, we again wait for 100 ms.
+    function debouncedCalculateSum(){
+
+        clearTimeout(timeout);
+        // timeout contains the clock
+        timeout = setTimeout(function(){
+            calculateSum();
+        }, 100);
+    }
+
+    function calculateSum(){
+
+        const firstNumber = document.getElementById("firstNumber").value;
+        const secondNumber = document.getElementById("secondNumber").value;
+
+        fetch("http://localhost:3000/sum?a=" + firstNumber + "&b=" + secondNumber).then(function(response){
+            response.text().then(function(ans){
+                const element = document.getElementById("Sum");
+                // Convert the strings to integers
+                element.innerHTML = parseInt(ans);
+            })
+        });
+    }
+</script>
+<body>
+   <input oninput="debouncedCalculateSum()" id = "firstNumber" type = "text" placeholder="First Number"></input><br></br>
+   <input oninput="debouncedCalculateSum()" id = "secondNumber" type = "text" placeholder="Second Number"></input><br></br>
+   <div id = "Sum"></div>
+</body>
