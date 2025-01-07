@@ -16,6 +16,17 @@ app.get("/sum", function(req, res){
     res.status(200).send(ans.toString());
 })
 
+app.get("/interest", function(req, res){
+
+    const principle = parseFloat(req.query.principle);
+    const rate = parseFloat(req.query.rate);
+    const time = parseFloat(req.query.time);
+
+    const interest = (principle*rate*time)/100;
+    //Have to stringify the ans, else express thinks the number as a status code !!
+    res.status(200).send(interest.toString());
+})
+
 app.use(function(err, req, res, next){
     res.send(err);
 })
