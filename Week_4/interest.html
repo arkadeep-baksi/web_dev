@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<script>
+    
+    // Calculating the sum on the Front End itself 
+    function calculateSum(){
+
+        const principle = parseFloat(document.getElementById("principle").value);
+        const rate = parseFloat(document.getElementById("rate").value);
+        const time = parseFloat(document.getElementById("time").value);
+        const element = document.getElementById("Interest");
+        // Convert the strings to integers
+        element.innerHTML = (principle*rate*time)/100;
+    }
+
+    // What if the logic is complex and your logic is in the backend, lets do that
+    // Lets see an example
+    function populateDiv(){
+
+        const principle = parseFloat(document.getElementById("principle").value);
+        const rate = parseFloat(document.getElementById("rate").value);
+        const time = parseFloat(document.getElementById("time").value);
+
+        fetch("http://localhost:3000/interest?principle=" + principle + "&rate=" + rate + "&time=" + time).then(function(response){
+            response.text().then(function(ans){
+                const element = document.getElementById("Interest");
+                // Convert the strings to integers
+                element.innerHTML = parseFloat(ans);
+            })
+        });
+    }
+    // Async await version of the same fetch API code
+    async function populateDiv2(){
+
+        const principle = parseFloat(document.getElementById("principle").value);
+        const rate = parseFloat(document.getElementById("rate").value);
+        const time = parseFloat(document.getElementById("time").value);
+
+        const response = await fetch("http://localhost:3000/interest?principle=" + principle + "&rate=" + rate + "&time=" + time);
+        const ans = await response.text();
+        const element = document.getElementById("Interest");
+        // Convert the strings to integers
+        element.innerHTML = parseFloat(ans);
+
+    }
+</script>
+<body>
+   <input id = "principle" type = "text" placeholder="Principle"></input><br></br>
+   <input id = "rate" type = "text" placeholder="Rate"></input><br></br>
+   <input id = "time" type = "text" placeholder="Time in years"></input><br></br>
+   <button onclick="populateDiv2()"> Calculate Interest</button><br></br>
+   <div id = "Interest"></div>
+</body>
