@@ -1,10 +1,14 @@
 const { Router } = require("express");
+const bodyParser = require("body-parser");
 const adminMiddleware = require("../middleware/admin");
 const router = Router();
 
 // Admin Routes
 router.post('/signup', (req, res) => {
     // Implement admin signup logic
+
+
+
 });
 
 router.post('/courses', adminMiddleware, (req, res) => {

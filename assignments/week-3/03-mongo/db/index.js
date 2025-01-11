@@ -1,6 +1,7 @@
 // Import mongoose, zod
 const zod = require("zod");
 const mongoose = require("mongoose");
+const { MongoParseError } = require("mongodb");
 
 // Connect to the Mongodb Database
 mongoose.connect("mongodb+srv://rik21091997:149AXGEHNISEnQAR@cluster0.g26c4.mongodb.net/courses?retryWrites=true&w=majority&appName=Cluster0",);
@@ -22,28 +23,19 @@ const UserSchema = new mongoose.Schema({
 })
 
 const courseSchema = new mongoose.Schema({
-    name: String,
-    price: parseFloat
+    title: String,
+    description: String,
+    price: Number,
+    imageLink: String
 })
 
-// const AdminSchema = new mongoose.Schema({
-//     // Schema definition here
-// });
+const Admin = mongoose.model('Admin', adminSchema);
+const User = mongoose.model('Users', UserSchema);
+const Course = mongoose.model('Courses', courseSchema);
 
-// const UserSchema = new mongoose.Schema({
-//     // Schema definition here
-// });
+module.exports = {
 
-// const CourseSchema = new mongoose.Schema({
-//     // Schema definition here
-// });
-
-// const Admin = mongoose.model('Admin', AdminSchema);
-// const User = mongoose.model('User', UserSchema);
-// const Course = mongoose.model('Course', CourseSchema);
-
-// module.exports = {
-//     Admin,
-//     User,
-//     Course
-// }
+    Admin,
+    User,
+    Course
+}
