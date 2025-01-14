@@ -1,5 +1,4 @@
-import { User } from "../db";
-
+const { User } = require("../db");
 async function userMiddleware(req, res, next) {
     // Implement user auth logic
     // You need to check the headers and validate the user from the user DB. Check readme for the exact headers to be expected
@@ -12,7 +11,9 @@ async function userMiddleware(req, res, next) {
         next();
     }
     else{
-        res.status(401).send("Unauthorized access");
+        res.status(403).json({
+            "mssg": "User does not exist !!"
+        });
     }
 }
 

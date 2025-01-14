@@ -1,5 +1,4 @@
-import { Admin } from "../db";
-
+const {Admin} = require("../db");
 // Middleware for handling auth
 async function adminMiddleware(req, res, next) {
     // Implement admin auth logic
@@ -13,7 +12,9 @@ async function adminMiddleware(req, res, next) {
         next();
     }
     else{
-        res.status(401).send("Unauthorized access");
+        res.status(403).json({
+            "mssg": "Admin does not exist !!"
+        });
     }
 }
 
