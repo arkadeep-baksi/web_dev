@@ -1,6 +1,11 @@
 const { Router } = require("express");
-const router = Router();
+const { Admin } = require("../db");
+const { Course } = require("../db");
+const bodyParser = require("body-parser");
 const userMiddleware = require("../middleware/user");
+
+const router = Router();
+router.use(bodyParser.json());
 
 // User Routes
 router.post('/signup', (req, res) => {
