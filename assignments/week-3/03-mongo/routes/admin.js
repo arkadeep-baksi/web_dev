@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
     }).then(function(value){
         if(value){
             res.json({
-                "mssg": "User already exists"
+                "mssg": "User already exists !!"
             });
         }
         else{
@@ -31,7 +31,7 @@ router.post('/signup', (req, res) => {
                 password : password
             }).then(function(){
                 res.status(200).json({
-                    "mssg" : "User Account created successfully"
+                    "mssg" : "User Account created successfully !!"
                 });
             });
         }
@@ -73,6 +73,7 @@ router.get('/courses', adminMiddleware, (req, res) => {
 
 router.use(function(err, req, res, next){
 
+    console.log(err)
     res.status(500).send("Internal Server Error");
     
 })
