@@ -7,6 +7,8 @@
 
 function findLargestElement(numbers) {
     
+    // ... spread operator: spreads the array elements as individual elements
+    return numbers.length ? Math.max(...numbers) : undefined;
 }
 
 module.exports = findLargestElement;
