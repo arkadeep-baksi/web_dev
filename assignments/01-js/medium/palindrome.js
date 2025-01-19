@@ -4,7 +4,14 @@
 */
 
 function isPalindrome(str) {
-  return true;
+
+  // Convert to Lowercase and remove common punctuations and spaces
+  str = str.toLowerCase().split(" ").join("").split(",").join("").split("!").join("").split(".").join("").split("?").join("");
+  // Reverse a string
+  const reversed_str = [...str].reverse().join("");
+
+  return str === reversed_str ? true : false;
+
 }
 
 module.exports = isPalindrome;
